@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>FurniPlace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🛋️ FurniPlace</h1>
+            <nav>
+                <button onclick="showTab('catalog')">Каталог</button>
+                <button id="nav-my-items" onclick="showTab('myItems')" style="display:none;">Мої оголошення</button>
+                <button id="nav-auth" onclick="showTab('auth')">Вхід / Реєстрація</button>
+                <button id="nav-logout" onclick="logout()" style="display:none;">Вийти (<span id="userNameDisplay"></span>)</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="tab-catalog">
+            <h2>Усі оголошення</h2>
+            <div class="filters-container">
+                <input type="text" id="searchInput" placeholder="Пошук за назвою...">
+                <select id="categoryFilter">
+                    <option value="Всі">Всі категорії</option>
+                    <option value="Дивани">Дивани</option>
+                    <option value="Столи">Столи</option>
+                    <option value="Стільці">Стільці</option>
+                    <option value="Шафи">Шафи</option>
+                    <option value="Інше">Інше</option>
+                </select>
+                <button onclick="loadCatalog()">Шукати</button>
+    </div>
+            <div id="catalog" class="catalog-grid"></div>
+        </section>
+
+        <section id="tab-auth" style="display:none;">
+            <h2>Вхід в систему</h2>
+            <form id="authForm" class="auth-form">
+                <input type="text" id="loginInput" placeholder="Логін" required>
+                <input type="password" id="passwordInput" placeholder="Пароль" required>
+                <div class="auth-buttons">
+                    <button type="button" onclick="login()">Увійти</button>
+                    <button type="button" onclick="register()" style="background-color: #3498db;">Зареєструватися</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="tab-myItems" style="display:none;">
+            <h2>Додати нове оголошення</h2>
+            <form id="addFurnitureForm" enctype="multipart/form-data">
+                <input type="text" id="title" placeholder="Назва" required>
+                <select id="category">
+                    <option value="Дивани">Дивани</option>
+                    <option value="Столи">Столи</option>
+                    <option value="Стільці">Стільці</option>
+                    <option value="Шафи">Шафи</option>
+                    <option value="Інше" selected>Інше</option>
+                </select>
+                <input type="text" id="description" placeholder="Опис" required>
+                <input type="number" id="price" placeholder="Ціна (грн)" required>
+                <input type="text" id="contactInfo" placeholder="Контакти (телефон/tg)" required>
+                <select id="condition">
+                    <option value="Нове">Нове</option>
+                    <option value="Вживане" selected>Вживане</option>
+                </select>
+                <input type="file" id="image" accept="image/*">
+                <button type="submit">Опублікувати</button>
+            </form>
+            <hr>
+            <h2>Мої товари</h2>
+            <div id="myCatalog" class="catalog-grid"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
